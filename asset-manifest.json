@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/Nomad_ToDo_V2/static/js/main.51595981.js",
-    "index.html": "/Nomad_ToDo_V2/index.html",
-    "main.51595981.js.map": "/Nomad_ToDo_V2/static/js/main.51595981.js.map"
+    "main.js": "/Nomad_ToDo_v2/static/js/main.c5fd9140.js",
+    "index.html": "/Nomad_ToDo_v2/index.html",
+    "main.c5fd9140.js.map": "/Nomad_ToDo_v2/static/js/main.c5fd9140.js.map"
   },
   "entrypoints": [
-    "static/js/main.51595981.js"
+    "static/js/main.c5fd9140.js"
   ]
 }
