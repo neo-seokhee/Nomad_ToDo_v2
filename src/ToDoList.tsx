@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -15,113 +15,28 @@ const Form = styled.form`
 `;
 const Input = styled.input`
   margin: 10px 0;
-  font-size: 26px;
+  font-size: 18px;
   padding: 15px;
 `;
 
-/* function ToDoList() {
-  const [toDo, setToDo] = useState('');
-  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setToDo(value);
-  };
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(toDo);
-  };
-
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input onChange={onChange} value={toDo} placeholder="Write a to do" />
-        <button>Add</button>
-      </form>
-    </div>
-  );
-} */
-
 interface IForm {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: number;
-  password1: number;
-  address?: string;
-  extraErrors?: string;
+  toDo: string;
 }
 
 function ToDoList() {
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-  } = useForm<IForm>({
-    defaultValues: {
-      email: '@naver.com',
-    },
-  });
-
-  const onValid = (data: IForm) => {
-    if (data.password !== data.password1) {
-      setError(
-        'password1',
-        { message: 'Password are not the same' },
-        { shouldFocus: true }
-      );
-    }
-
-    // setError('extraErrors', { message: 'Server Offline' }); // 전체 Form에 해당하는 에러
+  const { register, handleSubmit, setValue } = useForm<IForm>();
+  const handleValid = (data: IForm) => {
+    console.log('add to do', data.toDo);
+    setValue('toDo', '');
   };
-
   return (
     <Container>
-      <Form onSubmit={handleSubmit(onValid)}>
+      <Form onSubmit={handleSubmit(handleValid)}>
         <Input
-          {...register('email', {
-            required: 'Email Required',
-            pattern: {
-              value: /^[A-Za-z0-9._%+-]+@naver.com$/,
-              message: '네이버 이메일만 입력가능합니다',
-            },
-          })}
-          placeholder="Email"
+          {...register('toDo', { required: 'Please write a To Do' })}
+          placeholder="Write a to do"
         />
-        <span>{errors?.email?.message}</span>
-        <Input
-          {...register('firstName', {
-            required: 'Required',
-            validate: (value) => !value.includes('nico'),
-          })}
-          placeholder="First Name"
-        />
-        <span>{errors?.firstName?.message}</span>
-        <Input
-          {...register('lastName', { required: 'Last Name을 입력해주세요' })}
-          placeholder="Last Name"
-        />
-        <span>{errors?.lastName?.message}</span>
-        <Input
-          {...register('password', { required: 'Required' })}
-          placeholder="Password"
-        />
-        <span>{errors?.password?.message}</span>
-        <Input
-          {...register('password1', { required: 'Required' })}
-          placeholder="Password Again"
-        />
-        <span>{errors?.password1?.message}</span>
-        <Input
-          {...register('address', { required: 'Required' })}
-          placeholder="Address"
-        />
-        <span>{errors?.address?.message}</span>
-
         <button>Add</button>
-
-        <span>{errors?.extraErrors?.message}</span>
       </Form>
     </Container>
   );
