@@ -5,7 +5,7 @@
 
 <h3>Assignment</h3>
 <ol>
-<li>A</li>
-<li>B</li>
-<li>C</li>
+<li>To Do 삭제하기 기능</li>
+<li>LocalStorage에 저장해서 불러오기 (toDoState의 default값 활용)</li>
+<li>Custom Category 만들기</li>
 </ol>
